@@ -2,16 +2,16 @@
 
 「密码生成器」插件 — 为 DeepSeek Harness Web GUI 侧边栏添加一个密码生成器入口：随机生成密码（低/中/高档），第四档「🎲 有意义」由 Agent/LLM 生成，**不保存任何历史**。
 
-按 `password-generator-plan.md`（工作区根目录）实现：双面包（client 半 + host 半 Remote 服务），浏览器端生成低/中/高，第四档经 host 半调用 `ctx.llm`（API key 只在 host 进程内，见方案 §4.5 路径①）。
+双面包架构（client 半 + host 半 Remote 服务）：浏览器端生成低/中/高，第四档经 host 半调用 `ctx.llm`（API key 只在 host 进程内，不进入浏览器）。
 
 ## 截图
 
 > 弹层界面：四档切换（低／中／高／🎲），第四档「🎲 有意义」由 Agent/LLM 生成，
 > 来源行显示具体含义（主题 · 子分类 · 具体事实），强度条按字符集 × 长度估算熵。
 
-![「高」档 · 本地随机生成（16 位，四类字符，强度「强」）](docs/screenshot-high.png)
-
-![「🎲」档 · Agent/LLM 生成，来源行显示含义（主题 · 子分类 · 具体事实）](docs/screenshot-dice.png)
+| ![「高」档 · 本地随机生成](docs/screenshot-high.png) | ![「🎲」档 · Agent/LLM 生成](docs/screenshot-dice.png) |
+| :---: | :---: |
+| 「高」档 · 16 位四类字符，本地随机 | 「🎲」档 · AI 生成，来源行显示含义 |
 
 ## 包结构
 
@@ -22,7 +22,8 @@ dsh-password-generator/
 ├── scripts/
 │   ├── build.mjs         # 零依赖构建：产出 lib/ 两个产物
 │   ├── smoke-host.mjs    # host 半冒烟测试（校验/重试/兜底/Remote 标记）
-│   └── smoke-client.mjs  # client 半冒烟测试（bundle 格式/注入/Remote 挂载）
+│   ├── smoke-client.mjs  # client 半冒烟测试（bundle 格式/注入/Remote 挂载）
+│   └── verify-guard.mjs  # 探针：guarded-facade 下用 ctx.get 访问 Remote 命名空间
 ├── src/
 │   ├── host/index.js     # host 半源码：PasswordGeneratorRuntime
 │   └── client/index.js   # client 半源码：入口 + 弹层 UI
@@ -85,7 +86,7 @@ node scripts/smoke-client.mjs  # client 半 wiring 测试
 
 4. 刷新浏览器：侧边栏底部设置旁出现 🔑 密码生成器入口。
 
-## 回归清单（方案 §5.7）
+## 回归清单
 
 - [ ] 低/中/高即时生成；强度条按 字符集×长度 熵显示 弱/中/强 + bit 数
 - [ ] 🎲 档按钮变「🎲 生成」，骰子翻滚动效（旋转 + 点数跳动）+ 生成中禁用
