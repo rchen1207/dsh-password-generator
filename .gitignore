@@ -8,3 +8,7 @@ node_modules/
 # Editor
 .idea/
 .vscode/
+
+# Local-only project docs (kept in the workspace, not committed to the repo)
+/password-generator-demo.html
+/password-generator-plan.md
