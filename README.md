@@ -9,9 +9,9 @@
 > 弹层界面：四档切换（低／中／高／🎲），第四档「🎲 有意义」由 Agent/LLM 生成，
 > 来源行显示具体含义（主题 · 子分类 · 具体事实），强度条按字符集 × 长度估算熵。
 
-| ![「高」档 · 本地随机生成](docs/screenshot-high.png) | ![「🎲」档 · Agent/LLM 生成](docs/screenshot-dice.png) |
-| :---: | :---: |
-| 「高」档 · 16 位四类字符，本地随机 | 「🎲」档 · AI 生成，来源行显示含义 |
+![「高」档 · 16 位四类字符，本地随机生成，强度「强」](docs/screenshot-high.png)
+
+![「🎲」档 · Agent/LLM 生成，来源行显示含义（主题 · 子分类 · 具体事实）](docs/screenshot-dice.png)
 
 ## 包结构
 
