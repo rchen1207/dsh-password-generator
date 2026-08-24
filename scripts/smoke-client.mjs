@@ -50,7 +50,7 @@ vm.createContext(sandbox);
 vm.runInContext(readFileSync(join(ROOT, "lib/client.js"), "utf8"), sandbox);
 
 assert.ok(captured !== null, "bundle called window.__ModuleLoader__.load");
-assert.equal(captured.id, "dsh-client-ui-password-generator");
+assert.equal(captured.id, "dsh-password-generator");
 assert.equal(typeof captured.factory, "function");
 
 // 2 ── run the factory with stub externals ──
@@ -139,7 +139,7 @@ const enKeys = Object.keys(localeDicts[0].dicts.en).sort();
 assert.deepEqual(zhKeys, enKeys, "zh/en dictionaries share the same key set");
 
 assert.ok(mountedContribution !== null, "remote contribution mounted");
-assert.equal(mountedContribution.package, "dsh-client-ui-password-generator");
+assert.equal(mountedContribution.package, "dsh-password-generator");
 assert.equal(mountedContribution.descriptors.length, 1);
 const descriptor = mountedContribution.descriptors[0];
 assert.equal(descriptor.namespace, "passwordGenerator");

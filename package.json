@@ -1,5 +1,5 @@
 {
-  "name": "dsh-client-ui-password-generator",
+  "name": "dsh-password-generator",
   "description": "Password generator client plugin for the DeepSeek Harness Web GUI: random passwords (low/mid/high tiers) plus an Agent-generated meaningful tier. No history is persisted anywhere.",
   "version": "0.1.0",
   "private": true,

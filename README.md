@@ -1,13 +1,20 @@
-# dsh-client-ui-password-generator
+# dsh-password-generator
 
 「密码生成器」插件 — 为 DeepSeek Harness Web GUI 侧边栏添加一个密码生成器入口：随机生成密码（低/中/高档），第四档「🎲 有意义」由 Agent/LLM 生成，**不保存任何历史**。
 
 按 `password-generator-plan.md`（工作区根目录）实现：双面包（client 半 + host 半 Remote 服务），浏览器端生成低/中/高，第四档经 host 半调用 `ctx.llm`（API key 只在 host 进程内，见方案 §4.5 路径①）。
 
+## 截图
+
+> 弹层界面：四档切换（低／中／高／🎲），第四档「🎲 有意义」由 Agent/LLM 生成，
+> 来源行显示具体含义（主题 · 子分类 · 具体事实），强度条按字符集 × 长度估算熵。
+
+![密码生成器弹层](docs/screenshot.png)
+
 ## 包结构
 
 ```
-dsh-client-ui-password-generator/
+dsh-password-generator/
 ├── package.json          # 双面声明：dsh.client（web 平台 + inject 边）+ main/exports
 ├── tsdown.config.ts      # 规范构建配置（monorepo 工具链可用时）
 ├── scripts/
@@ -54,7 +61,7 @@ node scripts/smoke-client.mjs  # client 半 wiring 测试
    同一共享目录）：
 
    ```sh
-   ln -sfn "$PWD" ~/.dsh/profiles/node_modules/dsh-client-ui-password-generator
+   ln -sfn "$PWD" ~/.dsh/profiles/node_modules/dsh-password-generator
    ```
 
    （等价替代：`dsh plugin --profile web add <本目录>`，需要 pnpm。）
@@ -65,7 +72,7 @@ node scripts/smoke-client.mjs  # client 半 wiring 测试
    ```yaml
    - insert:
        - id: ui-password-generator
-         name: 'dsh-client-ui-password-generator'
+         name: 'dsh-password-generator'
    ```
 
 3. 重启 web profile（插件集变更需重启生效）：

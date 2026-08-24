@@ -39,9 +39,9 @@ const gateway = loadBundle("@deepseek-ai/dsh-api-gateway", `${DSH}/dsh-api-gatew
 
 const pass = { parse: (v) => v };
 const CONTRIB = {
-  package: "dsh-client-ui-password-generator",
+  package: "dsh-password-generator",
   descriptors: [{
-    id: "dsh-client-ui-password-generator#passwordGenerator/generateMeaningful",
+    id: "dsh-password-generator#passwordGenerator/generateMeaningful",
     service: "passwordGenerator", namespace: "passwordGenerator", method: "generateMeaningful",
     invocation: { kind: "direct" },
     parameters: [{ name: "request", wire: "request", source: "json", codec: { mode: "strict", typeSymbol: "x#request", schema: pass } }],

@@ -1,5 +1,5 @@
 /**
- * Build script for dsh-client-ui-password-generator.
+ * Build script for dsh-password-generator.
  *
  * Produces the two artifacts the DSH loader consumes, without needing the
  * monorepo toolchain:
@@ -22,7 +22,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
-const PKG_ID = "dsh-client-ui-password-generator";
+const PKG_ID = "dsh-password-generator";
 
 const hostSource = readFileSync(join(ROOT, "src/host/index.js"), "utf8");
 const clientSource = readFileSync(join(ROOT, "src/client/index.js"), "utf8");

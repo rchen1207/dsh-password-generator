@@ -1,5 +1,5 @@
 /**
- * tsdown build config for dsh-client-ui-password-generator.
+ * tsdown build config for dsh-password-generator.
  *
  * This is the canonical upstream-style build for DSH client packages (the
  * same shape `dsh-client-ui-*` packages use): it emits the ESM host half and

@@ -1,5 +1,5 @@
 /**
- * dsh-client-ui-password-generator — browser half (client).
+ * dsh-password-generator — browser half (client).
  *
  * Registers a "密码生成器" entry into the `sidebar.footer.action` list slot
  * (beside Settings) and renders a small modal with four complexity tiers:
@@ -89,10 +89,10 @@ const passThroughSchema = {
 };
 
 const TYPERT_REMOTE = {
-  package: "dsh-client-ui-password-generator",
+  package: "dsh-password-generator",
   descriptors: [
     {
-      id: "dsh-client-ui-password-generator#passwordGenerator/generateMeaningful",
+      id: "dsh-password-generator#passwordGenerator/generateMeaningful",
       service: "passwordGenerator",
       namespace: "passwordGenerator",
       method: "generateMeaningful",
@@ -104,14 +104,14 @@ const TYPERT_REMOTE = {
           source: "json",
           codec: {
             mode: "strict",
-            typeSymbol: "dsh-client-ui-password-generator#generateMeaningful:request",
+            typeSymbol: "dsh-password-generator#generateMeaningful:request",
             schema: passThroughSchema,
           },
         },
       ],
       result: {
         mode: "strict",
-        typeSymbol: "dsh-client-ui-password-generator#generateMeaningful:result",
+        typeSymbol: "dsh-password-generator#generateMeaningful:result",
         schema: passThroughSchema,
       },
       sourceLocation: { file: "src/client/index.js", line: 1, column: 1 },
@@ -201,7 +201,7 @@ function DiceFace({ face, className }) {
 }
 
 /* ── styles (DSW theme tokens; tag id dedupes like the shipped bundles) ── */
-const CSS_TAG_ID = "dsh-client-ui-password-generator/password-generator.css";
+const CSS_TAG_ID = "dsh-password-generator/password-generator.css";
 const CSS = [
   ".pgw-trigger{box-sizing:border-box;cursor:pointer;width:calc(100% + 8px);height:34px;color:var(--dsw-alias-label-primary);background:0 0;border:none;border-radius:12px;flex:none;align-items:center;gap:8px;margin:4px -4px;padding:6px 2px 6px 10px;font-family:inherit;font-size:14px;line-height:22px;display:flex;overflow:hidden}",
   ".pgw-trigger:hover{background:var(--dsw-alias-interactive-bg-hover)}",
@@ -242,7 +242,7 @@ const CSS = [
 
 if (typeof document !== "undefined" && document.querySelector(`style[data-plugin-css=${JSON.stringify(CSS_TAG_ID)}]`) === null) {
   const tag = document.createElement("style");
-  tag.dataset.plugin = "dsh-client-ui-password-generator";
+  tag.dataset.plugin = "dsh-password-generator";
   tag.dataset.pluginCss = CSS_TAG_ID;
   tag.textContent = CSS;
   document.head.appendChild(tag);
